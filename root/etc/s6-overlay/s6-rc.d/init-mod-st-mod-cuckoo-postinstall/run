@@ -12,6 +12,10 @@ cat signal-desktop-keyring.gpg | tee /usr/share/keyrings/signal-desktop-keyring.
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
   tee /etc/apt/sources.list.d/signal-xenial.list
 
+# Download Google Chrome .deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
 # Update and install packages
 apt update
-apt install -y telegram signal-desktop chromium-browser
+apt install -y telegram signal-desktop
+apt install -y ./google-chrome-stable_current_amd64.deb
