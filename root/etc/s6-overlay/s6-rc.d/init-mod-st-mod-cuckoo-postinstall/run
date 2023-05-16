@@ -14,4 +14,4 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] 
 
 # Update and install packages
 apt update
-apt install telegram signal-desktop
+apt install telegram signal-desktop chromium-browser

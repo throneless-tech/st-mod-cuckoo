@@ -1,1 +1,1 @@
-/etc/s6-overlay/s6-rc.d/init-mod-st-mod-cuckoo/run
+/etc/s6-overlay/s6-rc.d/init-mod-st-mod-cuckoo-postinstall/run
