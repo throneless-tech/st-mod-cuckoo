@@ -3,7 +3,7 @@ name: Build Image
 on: [push, pull_request, workflow_dispatch]
 
 env:
-  ENDPOINT: "throneless-tech/st-mod-template"
+  ENDPOINT: "throneless-tech/st-mod-cuckoo"
   BRANCH: "main"
 
 jobs:
