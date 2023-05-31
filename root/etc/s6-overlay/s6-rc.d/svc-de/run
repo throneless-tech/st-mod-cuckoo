@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+
+# Added to use cloudflare warp
+export HTTPS_PROXY=http://127.0.0.1:40000
+
+cd $HOME
+exec s6-setuidgid abc \
+  /bin/bash /defaults/startwm.sh
