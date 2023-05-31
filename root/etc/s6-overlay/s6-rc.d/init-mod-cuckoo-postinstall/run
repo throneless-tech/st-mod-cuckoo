@@ -24,9 +24,9 @@ apt update
 apt install -y telegram signal-desktop cloudflare-warp
 apt install -y ./google-chrome-stable_current_amd64.deb
 
-cat > /etc/profile.d/warp.sh<< \EOF
-#!/usr/bin/bash
+cat > /etc/bash.bashrc<< \EOF
 
-[ "$(id -u)" -ge 1000 ] || return
+if [ "$(id -u)" -ge 1000 ]; then
 export HTTPS_PROXY=http://127.0.0.1:40000
+fi
 EOF
