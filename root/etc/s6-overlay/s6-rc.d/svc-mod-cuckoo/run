@@ -1,3 +1,20 @@
 #!/usr/bin/with-contenv bash
+USER_POLICY="/config/.config/mdm.xml"
+LOCAL_POLICY="/var/lib/cloudflare-warp/mdm.xml"
+REMOTE_POLICY="${WARP_POLICY_FILE:-notfound}"
+
+[[ -d /var/lib/cloudflare-warp ]] || mkdir -p /var/lib/cloudflare-warp
+
+if [[ ! "$REMOTE_POLICY" -eq "notfound" ]]; then
+	echo "Downloading policy file"
+	curl -f "$REMOTE_POLICY" > "$LOCAL_POLICY" || exit 1
+	chown root:root "$LOCAL_POLICY"
+	chmod 640 "$LOCAL_POLICY"
+fi
+
+if [[ -f $USER_POLICY && ! -f $LOCAL_POLICY ]]; then
+	echo "Linking policy file"
+	ln -sf $USER_POLICY $LOCAL_POLICY
+fi
 
 /bin/warp-svc
