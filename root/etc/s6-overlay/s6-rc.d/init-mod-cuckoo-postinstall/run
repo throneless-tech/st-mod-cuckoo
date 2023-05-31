@@ -23,3 +23,10 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyr
 apt update
 apt install -y telegram signal-desktop cloudflare-warp
 apt install -y ./google-chrome-stable_current_amd64.deb
+
+cat > /etc/profile.d/warp.sh<< EOF
+#!/usr/bin/bash
+
+[ "$(id -u)" -ge 1000 ] || return
+export HTTPS_PROXY=http://127.0.0.1:40000
+EOF
