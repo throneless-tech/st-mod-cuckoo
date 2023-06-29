@@ -3,6 +3,7 @@
 ## Ubuntu
 if [ -f /usr/bin/apt ]; then
     echo "\
+        pwgen \
         wget \
         xz-utils" >> /mod-repo-packages-to-install.list
 
