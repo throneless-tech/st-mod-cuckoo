@@ -3,7 +3,7 @@
 # Added to use cloudflare warp
 #export HTTPS_PROXY=http://127.0.0.1:40000
 
-export HTTPS_PROXY=https://customer-${OXYLABS_USER}-cc-us-st-${OXYLABS_EXIT}-sessid-${pwgen 10 1}-sesstime-30:${OXYLABS_PASS}@pr.oxylabs.io:7777
+export HTTPS_PROXY="https://customer-${OXYLABS_USER}-cc-us-st-${OXYLABS_EXIT}-sessid-$(pwgen 10 1)-sesstime-30:${OXYLABS_PASS}@pr.oxylabs.io:7777"
 
 cd $HOME
 exec s6-setuidgid abc \
