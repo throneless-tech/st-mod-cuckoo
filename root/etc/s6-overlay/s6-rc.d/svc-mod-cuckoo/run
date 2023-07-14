@@ -1,20 +1,20 @@
 #!/usr/bin/with-contenv bash
-USER_POLICY="/config/.config/mdm.xml"
-LOCAL_POLICY="/var/lib/cloudflare-warp/mdm.xml"
-REMOTE_POLICY="${WARP_POLICY_FILE:-notfound}"
+SQUID_CONF=/config/.config/squid.conf
 
-[[ -d /var/lib/cloudflare-warp ]] || mkdir -p /var/lib/cloudflare-warp
+EXIT_STR=""
+[[ -z "$OXYLABS_EXIT" ]] || EXIT_STR="st-${OXYLABS_EXIT}-"
 
-if [[ ! "$REMOTE_POLICY" -eq "notfound" ]]; then
-	echo "Downloading policy file"
-	curl -f "$REMOTE_POLICY" > "$LOCAL_POLICY" || exit 1
-	chown root:root "$LOCAL_POLICY"
-	chmod 640 "$LOCAL_POLICY"
-fi
+SESSID=$(pwgen 10 1)
 
-if [[ -f $USER_POLICY && ! -f $LOCAL_POLICY ]]; then
-	echo "Linking policy file"
-	ln -sf $USER_POLICY $LOCAL_POLICY
-fi
+cat >${SQUID_CONF} <<EOF
+http_port 4000
+cache_peer pr.oxylabs.io parent 7777 0 \
+  no-query \
+  login=customer-${OXYLABS_USER}-${EXIT_STR}sessid-${SESSID}-sesstime-30:${OXYLABS_PASS}\
+  connect-fail-limit=99999999 \
+  proxy-only \
+  name=oxylabs
+cache_peer_access oxylabs allow all
+EOF
 
-/bin/warp-svc
+while true; do squid -f "$SQUID_CONF" -N && break; done

@@ -4,6 +4,7 @@
 if [ -f /usr/bin/apt ]; then
     echo "\
         pwgen \
+        squid \
         wget \
         xz-utils" >> /mod-repo-packages-to-install.list
 

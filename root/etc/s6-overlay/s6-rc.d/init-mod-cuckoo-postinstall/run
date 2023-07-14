@@ -15,11 +15,7 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] 
 # Download Google Chrome .deb
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-# Add Cloudflare Warp repo
-curl https://pkg.cloudflareclient.com/pubkey.gpg | gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/cloudflare-client.list
-
 # Update and install packages
 apt update
-apt install -y telegram signal-desktop cloudflare-warp
+apt install -y telegram signal-desktop
 apt install -y ./google-chrome-stable_current_amd64.deb
