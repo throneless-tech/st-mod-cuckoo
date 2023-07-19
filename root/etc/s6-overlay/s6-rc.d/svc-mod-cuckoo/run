@@ -14,9 +14,10 @@ cache_peer pr.oxylabs.io parent 7777 0 \
   login=customer-${OXYLABS_USER}-${EXIT_STR}sessid-${SESSID}-sesstime-30:${OXYLABS_PASS}\
   connect-fail-limit=99999999 \
   proxy-only \
-  name=oxylabs
+  name=oxylabs \
+  default
 cache_peer_access oxylabs allow all
-http_access allow all
+http_access allow localhost
 EOF
 
 while true; do squid -f "$SQUID_CONF" -N && break; done
