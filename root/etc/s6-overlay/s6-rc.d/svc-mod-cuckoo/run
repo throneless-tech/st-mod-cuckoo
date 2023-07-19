@@ -13,9 +13,10 @@ cache_peer pr.oxylabs.io parent 7777 0 \
   no-query \
   login=customer-${OXYLABS_USER}-${EXIT_STR}sessid-${SESSID}-sesstime-30:${OXYLABS_PASS}\
   connect-fail-limit=99999999 \
-  proxy-only \
+  no-query \
   name=oxylabs \
   default
+never_direct allow all
 cache_peer_access oxylabs allow all
 http_access allow localhost
 EOF
