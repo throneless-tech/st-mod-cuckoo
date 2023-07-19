@@ -8,6 +8,8 @@ SESSID=$(pwgen 10 1)
 
 cat >${SQUID_CONF} <<EOF
 http_port 4000
+pid_filename /tmp/squid.pid
+pinger_enable off
 cache_peer pr.oxylabs.io parent 7777 0 \
   no-query \
   login=customer-${OXYLABS_USER}-${EXIT_STR}sessid-${SESSID}-sesstime-30:${OXYLABS_PASS}\
