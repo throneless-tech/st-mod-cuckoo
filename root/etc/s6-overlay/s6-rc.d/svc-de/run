@@ -1,10 +1,10 @@
 #!/usr/bin/with-contenv bash
 
 # Added to use local squid proxy
-export HTTPS_PROXY=http://127.0.0.1:40000
-export HTTP_PROXY=http://127.0.0.1:40000
-export https_proxy=http://127.0.0.1:40000
-export http_proxy=http://127.0.0.1:40000
+export HTTPS_PROXY=http://127.0.0.1:4000
+export HTTP_PROXY=http://127.0.0.1:4000
+export https_proxy=http://127.0.0.1:4000
+export http_proxy=http://127.0.0.1:4000
 
 cd $HOME
 exec s6-setuidgid abc \
