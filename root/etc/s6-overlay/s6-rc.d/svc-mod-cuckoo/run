@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv bash
-SQUID_CONF=/config/.config/squid.conf
+SQUID_CONF=/etc/squid.conf
 
 EXIT_STR=""
 [[ -z "$OXYLABS_EXIT" ]] || EXIT_STR="st-${OXYLABS_EXIT}-"
