@@ -22,7 +22,7 @@ cache_peer pr.oxylabs.io parent 7777 0 \
   default
 never_direct allow all
 cache_peer_access oxylabs allow all
-http_access allow localhost
+http_access allow all
 EOF
 
 squid -f "$SQUID_CONF" -N && break
