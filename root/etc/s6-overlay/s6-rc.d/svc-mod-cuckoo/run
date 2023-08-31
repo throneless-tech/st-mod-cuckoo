@@ -1,7 +1,10 @@
 #!/usr/bin/with-contenv bash
 #SQUID_CONF=/config/.config/squid.conf
-SQUID_CONF=/etc/squid/oxylabs.conf
+#SQUID_CONF=/etc/squid/oxylabs.conf
+SQUID_CONF=/etc/squid/squid.conf
 
+#Hack to make sure firefox starts after a container reboot
+find $HOME/.mozilla -name .parentlock -delete
 
 EXIT_STR=""
 [[ -z "$OXYLABS_EXIT" ]] || EXIT_STR="st-${OXYLABS_EXIT}-"
@@ -11,6 +14,9 @@ SESSID=$(pwgen 10 1)
 while true; do
 
 cat >${SQUID_CONF} <<EOF
+acl localhost src 127.0.0.1/32
+http_access allow localhost
+http_access deny all
 http_port 4000
 pid_filename /tmp/squid.pid
 cache_peer pr.oxylabs.io parent 7777 0 \
