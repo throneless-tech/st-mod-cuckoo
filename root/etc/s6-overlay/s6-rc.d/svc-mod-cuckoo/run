@@ -7,7 +7,7 @@ SQUID_CONF=/etc/squid/squid.conf
 find $HOME/.mozilla -name .parentlock -delete
 
 EXIT_STR=""
-[[ -z "$OXYLABS_EXIT" ]] || EXIT_STR="st-${OXYLABS_EXIT}-"
+[[ -z "$OXYLABS_EXIT" ]] || EXIT_STR="${OXYLABS_EXIT}-"
 
 SESSID=$(pwgen 10 1)
 
